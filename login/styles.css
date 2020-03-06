@@ -1,0 +1,23 @@
+.bod{
+	
+	 background-image: url("../image/tech.jpg");
+	 background-repeat: no-repeat;
+	 background-size: 100% 720px;
+}
+
+#frm{
+	border: solid gray 1px;
+	width: 30%;
+	border-radius: 5px;
+	margin: 100px auto;
+	background: white;
+	padding: 50px;
+}
+
+#btn{
+	color: #fff;
+	background: #337ab7;
+	padding: 10px;
+	margin-left: 69%;
+}
+
