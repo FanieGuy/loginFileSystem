@@ -1,6 +1,37 @@
 <?php
 include 'connection.php';
+$error = '';
 
+if(isset($_POST["submit"]))
+{
+    
+        // validate username empty
+        if(isset($_POST['username']) && empty($_POST['username']))
+        {
+            $error .= "<div class='alert alert-danger text-center' role='alert'>Name is invalid, please try again.</div>";
+        }
+        else
+        {
+            // validate
+            if(!preg_match("/^[a-zA-Z ]*$/", $_POST['username']))
+            {
+            $error  .= "<div class='alert alert-success text-center' role='alert'>Name is valid.</div>";
+            }
+        }
+           // validate password empty
+           if(isset($_POST['password']) && empty($_POST['password']))
+           {
+               $error .= "<div class='alert alert-danger text-center' role='alert'>Password is invalid, please try again.</div>";
+           }
+           else
+           {
+               // validate
+               if(!preg_match("/^[a-zA-Z ]*$/", $_POST['password']))
+               {
+               $error  .= "<div class='alert alert-success text-center' role='alert'>'Password is valid.</div>";
+               }
+           }
+}
  $username = $_POST["username"];
  $password = $_POST["password"];
 

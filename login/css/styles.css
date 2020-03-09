@@ -1,0 +1,119 @@
+body{
+ margin: 0 auto;
+ background-image: url("../image/filer.jpg");
+ background-repeat: no-repeat;
+ background-size: 100% 720px;
+ background-color: grey;
+}
+ 
+.container{
+ width: 500px;
+ height: 400px;
+ text-align: center;
+ font-family: tahoma;
+ margin: 0 auto;
+ background-color: grey;
+ margin-top: 100px;
+  border-radius: 25px;
+  opacity:0.9;
+}
+ 
+.container img{
+ width: 150px;
+ height: 150px;
+ margin-top: -60px;
+ 
+}
+ 
+input[type="text"],input[type="password"]{
+ margin-top: 30px;
+  margin-left: 30px;
+ height: 45px;
+ width: 300px;
+ font-size: 18px;
+ text-align:center;
+ color: white;
+ margin-bottom: 20px;
+ background-color: black;
+ border-radius: 25px;
+
+
+}
+ 
+.form-input::before{
+ 
+ font-family: "FontAwesome";
+ padding-left: 07px;
+ padding-top: 40px;
+ position: absolute;
+ font-size: 35px;
+ color: #2980b9; 
+}
+ 
+
+ 
+.btn{
+ padding: 15px 25px;
+ border: none;
+ background-color: green;
+ color: #fff;
+ border-radius: 25px;
+ width: 150px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: green;
+  color: white;
+  text-align: center;
+}
+
+.marquee {
+
+  color: black;
+  font-size:50px;
+   position: absolute;
+  bottom: 60px;
+  font-family: tahoma;
+}
+
+<?php
+include 'connection.php';
+
+ $username = $_POST["username"];
+ $password = $_POST["password"];
+
+ if(trim($username)!=""and trim($password)!= "")
+ {
+     //Sanitizes whatever is entered
+     $username=stripcslashes($username);
+     $password=stripcslashes($password);
+     $username=strip_tags($_POST["username"]);
+     $password=strip_tags($_POST["password"]);
+     
+     $username= mysqli_real_escape_string($conn,$username);
+     $password= mysqli_real_escape_string($conn,$password);
+
+     //SQL Query
+     $query = mysqli_query($conn,"SELECT * FROM users WHERE username='$username' AND password ='$password'");
+     //applay mysqli
+     $numrows= mysqli_num_rows($query);
+     if($numrows >0)
+     {
+          //session username 
+         $_SESSION["username"]= $username; 
+
+        echo "Login successful";
+        }
+        else
+        {
+        echo "Failed to login";
+        }
+        
+   }
+?>
+
+
